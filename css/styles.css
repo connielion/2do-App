@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:700|Varela+Round');
+
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.varela {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.linethrough {
+  text-decoration: line-through;
+}
