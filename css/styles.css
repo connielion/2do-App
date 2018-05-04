@@ -11,3 +11,39 @@
 .linethrough {
   text-decoration: line-through;
 }
+
+.addbtn {
+  padding: 5px;
+}
+
+.user-input {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.black-text {
+  color: #000;
+}
+
+body > ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
