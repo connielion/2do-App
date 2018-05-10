@@ -15,69 +15,57 @@
 </head>
 <body>
   <!--NAV BAR -->
-  <nav class="navbar navbar-inverse raleway">
+  <nav class="navbar navbar-default raleway">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">TooDoo</a>
+        <a class="navbar-brand" href="index.html" class="navlink">ToDodo</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li class="active"><a href="#" class="navlink">Home</a></li>
+        <li><a href="#" class="navlink">About</a></li>
+        <li><a href="#" class="navlink">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i></span> Sign Up</a></li>
-        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+        <li><a href="#" class="navlink"><i class="fa fa-sign-in" aria-hidden="true"></i></span> Sign Up</a></li>
+        <li><a href="#" class="navlink"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
       </ul>
     </div>
   </nav>
 
 <!--CONTENT STARTS-->
-<div class="container-fluid varela black-text">
+<div class="container-fluid varela black-text main">
 
   <!--input row-->
   <div class="row">
-
     <h1 class="text-center">Your To-do List</h1>
-
     <div class="col-md-12">
 
     <form action="" class="center-block">
-
       <label for="">Task to do:</label>
 
-        <input type="text" name="newtask" placeholder="go to gym.." class="newtask" autofocus required>
+        <input type="text" name="newtask" placeholder="go to gym.." id="newtask" autofocus required>
 
-        <button type="submit" onclick="createLi()" name="submit" class="btn btn-success addbtn"> Add to To-do List </button>
-
+        <button type="submit" name="submit" class="btn btn-success addbtn"> Add to To-do List </button>
     </form>
 
-
     </div>
-
   </div>
 
 <!--task row-->
 <div class="row tasklists">
   <!-- NOT DONE COLUMN-->
-  <div class="col-md-6 col-sm-3 inc-col">
-
+  <div class="col-md-3 col-md-3 inc-col">
     <h1 class="text-center">Incompleted Tasks</h1>
-
-    <ul class="incompleted black-text"><!--TO-DO LIST-->
+    <ul id="incomplete" class="black-text inc"><!--TO-DO LIST-->
 
     </ul>
-
   </div>
   <!-- DONE COLUMN-->
-  <div class="col-md-6 col-sm-3 com-col">
-
+  <div class="col-md-3 col-md-offset-3 com-col">
     <h1 class="text-center">Completed Tasks</h1>
-
-    <ul class="completed"><!--FINISHED TASKS LIST-->
+    <ul id="completed"><!--FINISHED TASKS LIST-->
 
     </ul>
-
   </div>
 </div>
 
