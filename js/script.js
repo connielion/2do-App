@@ -9,34 +9,43 @@ document.addEventListener(
 
     var createNewLi= (inputString)=>{ //make new li item with task label, checkbox, label, edit/delete button
       var itemLi = document.createElement('li');
-      itemLi.appendChild(checkbox);
 
       var checkbox = document.createElement('input');//checkbox type="checkbox"
-        checkbox.type = "checkbox";
+      checkbox.type = "checkbox";
 
       var label = document.createElement('label');//label
+      label.innerText = inputString;
+
       var editInput = document.createElement('input');//txt
-        editInput.type = "text";
+      editInput.type = "text";
+
       var editButton = document.createElement('button');
-        editButton.innerText = "Edit";
-        editButton.className = "editBtn";
+      editButton.innerText = "Edit";
+      editButton.className = "editBtn";
+
       var deleteButton = document.createElement('button');
-        deleteButton.innerText = "Delete";
-        deleteButton.className="deleteBtn";
-        label.innerText = inputString;
+      deleteButton.innerText = "Delete";
+      deleteButton.className="deleteBtn";
 
 
+      //Appending labels, buttons, checkbox
         itemLi.appendChild(label);
         itemLi.appendChild(editInput);
         itemLi.appendChild(editButton);
         itemLi.appendChild(deleteButton);
+        itemLi.appendChild(checkbox);
 
     return itemLi;
     }
 
+    var addTask = ()=>{
+        var itemLi = createNewLi(userInput.value);
+        todoUl.appendChild(itemLi);
+        //bindEvent(itemLi, markDone);
+        userInput.value=" ";
+    }
 
-
-
+    //edited input
       var editLabel = ()=>{
         console.log('edit...');
 
@@ -54,6 +63,7 @@ document.addEventListener(
         itemLi.classList.toggle('editTodo');
       }
 
+//remove Li
     var removeTask = ()=>{
       console.log('remove..');
 
@@ -62,6 +72,7 @@ document.addEventListener(
       ul.removeChild(itemLi);
     }
 
+//checkbox: li=> to Done List
     var markDone = ()=>{
       console.log('finish task..');
 
@@ -69,7 +80,7 @@ document.addEventListener(
       doneUl.appendChild(itemLi);
       //bindEvent(itemLi, notDone);
     }
-
+//checkbox: li=> to Todolist
     var notDone = ()=>{
       console.log('not done..');
 
@@ -77,7 +88,8 @@ document.addEventListener(
       todoUl.appendChild(itemLi);
       //bindEvent(itemLi, markDone);
     }
-*/
+
+
 
     //Event Listeners
     addBtn.addEventListener(
@@ -85,7 +97,6 @@ document.addEventListener(
 
       addTask()
     )
-
 
 
     var bindEvent = (itemLi, checkBoxEvent)=>{
@@ -108,12 +119,11 @@ document.addEventListener(
         'change',
         ()=>{
           if(this.checked){
-
+            markDone();
           } else {
-
+            notDone();
           }
         }
       )
-
-  })
-;
+    }
+  });
