@@ -85,11 +85,11 @@ border-radius: 8px;
   margin-right: 10px;
 }
 
-.todoList ul li label {
+ul li {
   padding: 5px;
 }
 
- ul li label {
+ul li label {
   padding-right: 5px;
   font-size: 20px;
   text-shadow: 2px 2px #000;
@@ -97,7 +97,7 @@ border-radius: 8px;
 
 /* EDIT LABEL*/
 
-ul li .editTodo input[type=text] {
+ul li input[type=text] {
   display:block;
   color: #000;
 }
@@ -105,8 +105,4 @@ ul li .editTodo input[type=text] {
 ul li.editTodo label {
   display:none;
 
-}
-
-ul li input {
-  color: #000;
 }
