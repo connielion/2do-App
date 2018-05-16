@@ -20,7 +20,8 @@ body {
 .txt-bg {
 display: inline-block;
 padding: 5px;
-background-color: rgba(0,0,0,.4);
+background-color: rgba(255, 255, 255, 0.5);
+color: #000;
 border-radius: 8px;
 }
 .linethrough {
@@ -43,16 +44,17 @@ border-radius: 8px;
 }
 
 .white-text {
-  color: #fff;
+  color: #000;
 }
 .white-txt-black-bg {
-  color: #fff;
-  background-color: rgba(0,0,0,0.4);
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
 }
 
 .navlink {
   color: #fff;
+  padding: 0px;
 }
 
 /* CONTAINER FLUID CSS */
@@ -61,7 +63,7 @@ border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-
+  color: #000;
 }
 
 
@@ -85,24 +87,17 @@ border-radius: 8px;
   margin-right: 10px;
 }
 
-ul li {
+.li-padding {
   padding: 5px;
 }
 
 ul li label {
   padding-right: 5px;
   font-size: 20px;
-  text-shadow: 2px 2px #000;
+  text-shadow: 2px 2px #ddd;
 }
 
-/* EDIT LABEL*/
-
-ul li input[type=text] {
-  display:block;
-  color: #000;
-}
-
-ul li.editTodo label {
-  display:none;
-
+.margin-side {
+  margin-left: 5px;
+  margin-right: 5px;
 }

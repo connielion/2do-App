@@ -1,187 +1,118 @@
-/*
-  ==================PROBLEMS!!========================
-1.EDITBUTTON TEXTCONTENT NOT CHANGING TO 'SAVE'
-  -check if input changed?
-2.New input not overwriting old:
-  - line 72?
-3.Delete button not working?
-  -is eventlistener working?
 
-4.can create more than 1 Input field more than once via edit button per Li
-  -how to make edit field input replace old input
-5. Checkbox not working: want to append item to #doneUl when 'checked'
+var userInput = document.getElementById('userInput');
+var addBtn = document.getElementById('addBtn');
+var taskLists = {
+  todo: document.getElementById('todo'),
+  done: document.getElementById('done')
+}//completed tasks ul
 
+function removeTask() {
+    var li = this.parentNode;
+    console.log(li)
+    var p = li.parentNode;
 
-*/
+    p.removeChild(li);
+}
 
+var editTask = ()=>{
+    var item = this.parentNode;
+    var edit = item.querySelector("input[type=text]");
+    var label = item.querySelector('label');
 
-    var userInput = document.getElementById('userInput');
-    var addBtn = document.getElementById('addBtn');
-    var todoUl = document.getElementById('todo');//incomplete tasks ul
-    var doneUl = document.getElementById('done');//completed tasks ul
-
-//make new li item with task label, checkbox, label, edit/delete button; RETURN LI
-    var createNewLi= (inputString)=>{
-      var itemLi = document.createElement('li');
-
-      var checkbox = document.createElement('input');//checkbox type="checkbox"
-      checkbox.type = "checkbox";
-
-      var label = document.createElement('label');//label
-      label.innerText = inputString;
-
-      var editButton = document.createElement('button');
-      editButton.innerText = "Edit";
-      editButton.className = "editBtn btn black-text";
-
-      var deleteButton = document.createElement('button');
-      deleteButton.innerText = "Delete";
-      deleteButton.className="deleteBtn btn btn-danger";
-
-      editButton.addEventListener('click', (e) => {
-        editLabel(e)
-      })
-      //Appending labels, buttons, checkbox
-        itemLi.appendChild(label);
-        // itemLi.appendChild(editInput);
-        itemLi.appendChild(editButton);
-        itemLi.appendChild(deleteButton);
-        itemLi.appendChild(checkbox);
+    var hasEditTodo = item.classList.contains('editTodo');
 
 
-    return itemLi;
+    if(hasEditTodo){
+      label.textContent = edit.value;
+      label.style.display = 'inline';
+      edit.style.display = 'none';
+    } else {
+      edit.value = label.textContent;
+      edit.style.display = 'inline-block';
+      label.style.display = 'none';
     }
 
+    item.classList.toggle('editTodo');
+}
 
 
-//Called in addBtn addEventListener
-    var addTask = ()=>{
+function createNewLi(taskInput, markDone) {
+  var itemLi = document.createElement('li');
+  itemLi.className = "li-padding"
 
-        var itemLi = createNewLi(userInput.value);
+  var checkbox = document.createElement('input');//checkbox type="checkbox"
+  checkbox.type = "checkbox";
 
-        todoUl.appendChild(itemLi);
-      //  bindEvent(itemLi, markDone());
-        userInput.value=" ";
-    }
+  var label = document.createElement('label');//label
+  label.innerText = taskInput;
 
-    //edited input mode
-      var editLabel = (e)=>{
-//e.target = editBtn?
-        const parent = e.target.parentNode;
-        var editInput = document.createElement('input');//txt
-        editInput.type = "text";
-        editInput.className = "black-text";
-        var itemLi = e.target.previousSibling; //previousSibling = input field
+  var editButton = document.createElement('button');
+  editButton.innerText = "Edit";
+  editButton.className = "editBtn btn black-text margin-side";
 
-        editInput.value = itemLi.textContent;
-        parent.appendChild(editInput);
-        parent.insertBefore(editInput, e.target);
-        console.log(parent);
-/*
-        var editBtn = itemLi.getElementsByClassName('.editBtn');
-        itemLi.className="editTodo";
-        var containsEditTodo = this.classList.contains("editTodo");
+  var deleteButton = document.createElement('button');
+  deleteButton.innerText = "Delete";
+  deleteButton.className="deleteBtn btn btn-danger margin-side";
 
-         if(containsEditTodo){
-           editInput.innerText = editInput.value;
-           editBtn.textContent = "Edit";
-         }else {
-            editInput.value = label.innerText;
-            editBtn.textContent = "Save";
-        }
-*/
-        itemLi.classList.toggle('editTodo');
+  var edit = document.createElement('input');
+  edit.type = 'text';
+  edit.style.display = 'none';
 
-      }
+  checkbox.addEventListener('click', markDone);
+  deleteButton.addEventListener('click', removeTask);
+  editButton.addEventListener('click', editTask);
 
-//remove Li item
-    var removeTask = ()=>{
+  itemLi.appendChild(checkbox);
+  itemLi.appendChild(deleteButton);
+  itemLi.appendChild(editButton);
+  itemLi.appendChild(label);
+  itemLi.appendChild(edit);
 
-      var itemLi = this.parentNode;
-      var ul = itemLi.parentNode;
-      ul.removeChild(itemLi);
-    }
+  return itemLi;
+}
 
-//checkbox: li=> to Done List
-    var markDone = ()=>{//CHECKBOX CHECKED
+var markDone = ()=>{//CHECKBOX CHECKED
 
+  var itemLi = event.target.parentElement;
+  var ul = itemLi.parentElement.id;
 
-      var itemLi = this.parentNode;
-      doneUl.appendChild(itemLi);
-      bindEvent(itemLi, notDone());
+  taskLists[ul === 'done' ? 'todo' : 'done'].appendChild(itemLi);
+  this.checked === 'todo' ? "true" : "false";//checked=true
+  userInput.value = "";
+  userInput.focus();
 
-    }
-//checkbox: li=> to Todolist
-    var notDone = ()=>{
-      var itemLi=this.parentNode;
-      todoUl.appendChild(itemLi);
-      bindEvent(itemLi, markDone());
-    }
+}
 
+var add = function(taskLi){
+  taskLists.todo.appendChild(taskLi);
+  this.checked = false;
+}
 
+var markDone = (e)=>{
+    var taskLi = e.target.parentElement;
+    var list = taskLi.parentElement.id;
 
-    //Event Listeners
-    addBtn.addEventListener(
-      'click',
-      ()=>{
-        if(userInput.value !==" "){
+    taskLists[list === 'done' ? 'todo' : 'done'].appendChild(taskLi);
 
-          addTask()
-        } else {
-          alert('Enter task!');
-        }
-      }
-    )
+    this.checked === 'todo' ? 'true' : 'false';
+    userInput.value = '';
+    userInput.focus()
+};
 
+var inputFocus = ()=>{
+  var item = userInput.value;
 
-    var bindEvent = (itemLi, checkBoxEvent)=>{
+    add(createNewLi(item, markDone))
+    userInput.value = '';
+    userInput.focus();
+}
 
-          var checkbox = itemLi.querySelector('input[type=checkbox]');
-          var editButton = itemLi.querySelector('btn.editBtn');
-          var deleteButton = itemLi.querySelector('button.deleteBtn');
+addBtn.addEventListener('click', inputFocus);
 
-          editButton.addEventListener(
-            'click',
-            (e)=>{
-              editLabel(e);
-            }
-
-          )
-
-          deleteButton.addEventListener(
-            'click',
-            ()=>{
-              removeTask()
-            }
-          )
-
-
-          var checkBoxEvent = checkbox.addEventListener(
-            'change',
-
-                (e)=>{
-                  if(this.checked){
-                    console.log(this);
-                    markDone().call(e.target);
-                  } else {
-                    notDone().call(e.target);
-
-                  }
-                }
-          )
-    } //end bindEvent()
-
-    for (let i = 0; i < todoUl.children.length; i++){
-
-		//bind events to list items chldren(tasksCompleted)
-		bindEvent(todoUl.children[i], markDone());
-	}
-
-
-
-
-//cycle over completedTasksHolder ul list items
-	for (let i = 0; i< doneUl.children.length; i++){
-	//bind events to list items chldren(tasksIncompleted)
-		bindEvent(doneUl.children[i],notDone());
-	}
+userInput.addEventListener('keyup',
+  (e)=>{
+    if(e.keyCode === 13){
+      inputFocus();
+    }//enter/return key
+  }
+)
