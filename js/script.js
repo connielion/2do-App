@@ -87,13 +87,15 @@ var add = function(taskLi){
   taskLists.todo.appendChild(taskLi);
   this.checked = false;
 }
-
+//CHECKBOX EVENT
 var markDone = (e)=>{
     var taskLi = e.target.parentElement;
     var list = taskLi.parentElement.id;
+    var doneTxt = taskLi.style.textDecoration = "linethrough";
+    var notDoneTxt = taskLi.style.textContent = 'none';
 
     taskLists[list === 'done' ? 'todo' : 'done'].appendChild(taskLi);
-
+    this.checked === true ? 'doneTxt' : 'notDoneTxt';
     this.checked === 'todo' ? 'true' : 'false';
     userInput.value = '';
     userInput.focus()
