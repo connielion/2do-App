@@ -27,7 +27,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="navlink">home</a></li>
+        <li><a href="index.html" class="navlink">home</a></li>
         <li><a href="about.html" class="navlink">about</a></li>
         <li><a href="contact.html" class="navlink">contact</a></li>
       </ul>
@@ -43,7 +43,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-        <h1>Sign Up</h1>
+
         <form action="action_page.php" class="bg white-text signup"">
   <div class="container">
     <h1>Sign Up</h1>
@@ -73,6 +73,28 @@
 </form>
     </div>
     <div class="col-xs-6">
+
+      <form action="action_page.php" class="signup bg">
+
+<div class="container">
+  <h2>Login</h2>
+  <label for="uname"><b>Username</b></label>
+  <input type="text" placeholder="Enter Username" name="uname" required>
+
+  <label for="psw"><b>Password</b></label>
+  <input type="password" placeholder="Enter Password" name="psw" required>
+
+  <button type="submit">Login</button>
+  <label>
+    <input type="checkbox" checked="checked" name="remember"> Remember me
+  </label>
+</div>
+
+<div class="container" style="background-color:#f1f1f1">
+  <button type="button" class="cancelbtn">Cancel</button>
+  <span class="psw">Forgot <a href="#">password?</a></span>
+</div>
+</form>
 
     </div>
   </div>
