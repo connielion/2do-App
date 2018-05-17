@@ -7,7 +7,7 @@ var taskLists = {
 }//completed tasks ul
 var form = document.getElementById('form');
 
-
+//REMOVES LI
 function removeTask() {
     var li = this.parentNode;
     console.log(li)
@@ -15,7 +15,7 @@ function removeTask() {
 
     p.removeChild(li);
 }
-
+//EDIT MODE
 var editTask = (event) => {
 
     var item = event.target.parentNode;
@@ -52,7 +52,7 @@ function createNewLi(taskInput, markDone) {
   label.innerText = taskInput;
 
   var editButton = document.createElement('button');
-  editButton.innerText = "Edit";
+  editButton.innerText = "Edit/Save";
   editButton.className = "editBtn btn black-text margin-side";
 
   var deleteButton = document.createElement('button');
