@@ -5,6 +5,8 @@ var taskLists = {
   todo: document.getElementById('todo'),
   done: document.getElementById('done')
 }//completed tasks ul
+var form = document.getElementById('form');
+
 
 function removeTask() {
     var li = this.parentNode;
@@ -14,8 +16,9 @@ function removeTask() {
     p.removeChild(li);
 }
 
-var editTask = ()=>{
-    var item = this.parentNode;
+var editTask = (event) => {
+
+    var item = event.target.parentNode;
     var edit = item.querySelector("input[type=text]");
     var label = item.querySelector('label');
 
@@ -25,7 +28,7 @@ var editTask = ()=>{
     if(hasEditTodo){
       label.textContent = edit.value;
       label.style.display = 'inline';
-      edit.style.display = 'none';
+      label.style.display = 'none';
     } else {
       edit.value = label.textContent;
       edit.style.display = 'inline-block';
@@ -37,13 +40,15 @@ var editTask = ()=>{
 
 
 function createNewLi(taskInput, markDone) {
+//MAKES LI
   var itemLi = document.createElement('li');
-  itemLi.className = "li-padding"
+  itemLi.className = "li-padding black-bg"
 
   var checkbox = document.createElement('input');//checkbox type="checkbox"
   checkbox.type = "checkbox";
 
   var label = document.createElement('label');//label
+  label.className = "white-text Montserrat"
   label.innerText = taskInput;
 
   var editButton = document.createElement('button');
@@ -60,6 +65,7 @@ function createNewLi(taskInput, markDone) {
 
   checkbox.addEventListener('click', markDone);
   deleteButton.addEventListener('click', removeTask);
+
   editButton.addEventListener('click', editTask);
 
   itemLi.appendChild(checkbox);
@@ -71,7 +77,7 @@ function createNewLi(taskInput, markDone) {
   return itemLi;
 }
 
-var markDone = ()=>{//CHECKBOX CHECKED
+var markDone = ()=>{//CHECKBOX EVENT--->append to list
 
   var itemLi = event.target.parentElement;
   var ul = itemLi.parentElement.id;
@@ -101,15 +107,22 @@ var markDone = (e)=>{
     userInput.focus()
 };
 
-var inputFocus = ()=>{
+var inputFocus = (event) => {
   var item = userInput.value;
-
     add(createNewLi(item, markDone))
     userInput.value = '';
     userInput.focus();
 }
 
 addBtn.addEventListener('click', inputFocus);
+
+form.addEventListener('submit', (e)=>{
+e.preventDefault();
+    if(e.keyCode === 13){
+      console.log(e);
+    }
+
+})
 
 userInput.addEventListener('keyup',
   (e)=>{
